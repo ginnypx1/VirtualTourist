@@ -13,7 +13,7 @@ To check out my version of "Virtual Tourist":
 ` $ cd /VirtualTourist-master/ `
 
 3. Open "Virtual Tourist" in XCode:
-` $ open Virtual\ Tourist.xcodeproj `
+` $ open VirtualTourist.xcodeproj `
 
 ## Instructions
 

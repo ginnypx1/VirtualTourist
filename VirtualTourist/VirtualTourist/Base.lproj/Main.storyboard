@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Eh-Rp-W11">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Virtual Tourist-->
+        <scene sceneID="ffd-fm-VcK">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="xKt-D1-LWx" customClass="MapViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GHE-xX-B4t"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gvu-R2-dGO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xis-Bo-SWk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Sg7-He-AUy">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="xKt-D1-LWx" id="uVc-Ta-ftR"/>
+                                </connections>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap Pins To Delete" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dwL-72-TBH">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="i8W-jU-7Aw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dwL-72-TBH" firstAttribute="leading" secondItem="xis-Bo-SWk" secondAttribute="leading" id="4Tc-wP-Zlz"/>
+                            <constraint firstAttribute="trailing" secondItem="dwL-72-TBH" secondAttribute="trailing" id="5gd-VW-LgX"/>
+                            <constraint firstItem="Gvu-R2-dGO" firstAttribute="top" secondItem="Sg7-He-AUy" secondAttribute="bottom" id="A0f-Y8-vLx"/>
+                            <constraint firstItem="Gvu-R2-dGO" firstAttribute="top" secondItem="dwL-72-TBH" secondAttribute="bottom" id="LSd-F5-wNN"/>
+                            <constraint firstAttribute="trailing" secondItem="Sg7-He-AUy" secondAttribute="trailing" id="cWc-8b-L2f"/>
+                            <constraint firstItem="Sg7-He-AUy" firstAttribute="leading" secondItem="xis-Bo-SWk" secondAttribute="leading" id="mOT-c3-1QR"/>
+                            <constraint firstItem="Sg7-He-AUy" firstAttribute="top" secondItem="GHE-xX-B4t" secondAttribute="bottom" id="tsd-Hs-Lm1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Virtual Tourist" id="6ac-K9-PDT"/>
+                    <connections>
+                        <outlet property="deletePinLabel" destination="dwL-72-TBH" id="RIE-Bx-LoK"/>
+                        <outlet property="mapView" destination="Sg7-He-AUy" id="5rg-Zf-il8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jDh-y4-tqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1216.8" y="139.880059970015"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dgr-6A-7it">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Eh-Rp-W11" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LtU-fZ-OIm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xKt-D1-LWx" kind="relationship" relationship="rootViewController" id="3aj-TR-s6u"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nyg-RJ-7um" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="277.60000000000002" y="140.77961019490255"/>
+        </scene>
+    </scenes>
+</document>
