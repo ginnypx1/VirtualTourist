@@ -35,13 +35,13 @@ COMPLETED:
 - Display initial map view and add the ability to drop and delete pins as well as retrieve the map region data information.
 - Persist the map region data information in User Defaults.
 - Persist the pin locations in Core Data.
-
-TO DO:
 - Create the PhotoAlbumViewController.
-- Retrieve pin and map information for the mapView in PhotoAlbumViewController.
 - Set up the UICollectionView.
 - Set up the Flicker API.
 - Add Flickr images to UICollectionView.
-- Allow for deletion of Flickr images, and replacements if available.
+- Allow for deletion of Flickr images, as well as a call to replace collection.
 - Persist Photo data in Core Data.
+
+TO DO:
+- Retrieve pin and map information for the mapView in PhotoAlbumViewController.
 - Make sure new pins call Flickr API while old pins load photo album from Core Data.

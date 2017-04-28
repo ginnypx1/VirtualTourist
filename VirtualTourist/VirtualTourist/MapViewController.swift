@@ -12,6 +12,8 @@ import CoreData
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    // MARK: - Outlets
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var deletePinLabel: UILabel!
     
@@ -19,7 +21,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     var mapIsEditing: Bool = false
     
-    var context: NSManagedObjectContext!
+    let delegate = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: - View
     
@@ -36,11 +38,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         longPress.minimumPressDuration = 1.0
         self.mapView.addGestureRecognizer(longPress)
         
-        // access the Core Data stack
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let stack = delegate.stack
-        context = stack.context
-        
         // retrieve saved map region
         retrieveSavedMapRegion()
         // retrieve map pins
@@ -55,7 +52,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         let pinFetchRequest = NSFetchRequest<Pin>(entityName: "Pin")
         do {
             // fetch pins
-            let allPins = try self.context.fetch(pinFetchRequest)
+            let allPins = try self.delegate.stack.context.fetch(pinFetchRequest)
             // add pins to map
             print("All Pins count: \(allPins.count)")
             for pin in allPins {
@@ -69,7 +66,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func addPinToDatabase(latitude: Double, longitude: Double) {
-        let newPin = Pin(latitude: latitude, longitude: longitude, context: self.context)
+        let newPin = Pin(latitude: latitude, longitude: longitude, context: self.delegate.stack.context)
         print("Created new pin: \(String(describing: newPin))")
     }
     
@@ -113,7 +110,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             // delete the pin in the stack and on the map
             do {
                 let selectedPin = try self.context.fetch(pinFetchRequest)
-                self.context.delete(selectedPin[0])
+                self.delegate.stack.context.delete(selectedPin[0])
                 print("Pin Deleted: \(selectedPin)")
                 self.mapView.removeAnnotation(annotation)
             } catch {

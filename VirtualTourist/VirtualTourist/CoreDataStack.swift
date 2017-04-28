@@ -70,6 +70,13 @@ struct CoreDataStack {
     func addStoreCoordinator(_ storeType: String, configuration: String?, storeURL: URL, options : [NSObject:AnyObject]?) throws {
         try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: nil)
     }
+    
+    // MARK: - Add FlickrPhoto to Database
+    
+    func addFlickrPhotoToDatabase(urlString: String, fetchedResultsController: NSFetchedResultsController<FlickrPhoto>) {
+        let newFlickrPhoto = FlickrPhoto(urlString: urlString, context: fetchedResultsController.managedObjectContext)
+        print("Created new photo: \(String(describing: newFlickrPhoto))")
+    }
 }
 
 // MARK: - CoreDataStack (Removing Data)
