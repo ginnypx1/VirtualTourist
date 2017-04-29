@@ -10,10 +10,15 @@ import Foundation
 import MapKit
 
 struct MapRegion {
+    
+    // MARK: - Properties
+    
     var latitude: Double
     var longitude: Double
     var latitudeDelta: Double
     var longitudeDelta: Double
+    
+    // MARK: - Initializers
     
     init() {
         self.latitude = 37.132839
@@ -44,6 +49,8 @@ struct MapRegion {
             self.longitudeDelta = 61.276014
         }
     }
+    
+    // MARK: - Create Map Region
     
     func makeMapRegion(_ mapRegion: MapRegion) -> MKCoordinateRegion {
         let latitude: CLLocationDegrees = mapRegion.latitude

@@ -25,6 +25,8 @@ class MapRegionModelTests: XCTestCase {
         super.tearDown()
     }
     
+    // MARK: - Test Properties
+    
     func test_MapRegion_HasLatitude() {
         XCTAssertNotNil(sut.latitude)
     }

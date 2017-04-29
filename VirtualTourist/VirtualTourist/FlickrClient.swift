@@ -22,8 +22,6 @@ class FlickrClient : NSObject {
     
     func fetchImagesWithLatitudeAndLongitude(latitude: Double, longitude: Double, completionHandler: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) {
         
-        print("2. Building request for all photos...")
-        
         pageRequested += 1
         
         /* Set the Parameters */

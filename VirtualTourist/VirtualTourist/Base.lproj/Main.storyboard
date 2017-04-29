@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -106,7 +107,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="152" height="137"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QOs-uO-k5h">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QOs-uO-k5h">
                                                     <rect key="frame" x="0.0" y="0.0" width="152" height="137"/>
                                                 </imageView>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="p2Q-rT-Dgk">
@@ -138,10 +139,21 @@
                                     <outlet property="delegate" destination="m9e-lg-j5I" id="xjf-PE-tIx"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This pin has no images." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ESL-cM-PCd">
+                                <rect key="frame" x="16" y="321" width="343" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="TCf-OZ-adr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ESL-cM-PCd" firstAttribute="centerY" secondItem="sAR-3C-bs5" secondAttribute="centerY" id="0zX-5h-TUA"/>
                             <constraint firstItem="29r-S3-vPj" firstAttribute="leading" secondItem="sAR-3C-bs5" secondAttribute="leading" id="907-Ez-Agh"/>
+                            <constraint firstItem="ESL-cM-PCd" firstAttribute="leading" secondItem="sAR-3C-bs5" secondAttribute="leadingMargin" id="Fgf-cw-FNf"/>
                             <constraint firstAttribute="trailing" secondItem="Kx6-es-7kp" secondAttribute="trailing" id="GFw-0p-PR3"/>
                             <constraint firstItem="29r-S3-vPj" firstAttribute="top" secondItem="Kx6-es-7kp" secondAttribute="bottom" constant="2" id="MJr-SU-14k"/>
                             <constraint firstAttribute="trailing" secondItem="29r-S3-vPj" secondAttribute="trailing" id="N74-jM-7rX"/>
@@ -151,7 +163,9 @@
                             <constraint firstItem="Kx6-es-7kp" firstAttribute="height" secondItem="sAR-3C-bs5" secondAttribute="height" multiplier="0.25" id="YEi-ko-zOI"/>
                             <constraint firstItem="Kx6-es-7kp" firstAttribute="top" secondItem="t3b-ub-juB" secondAttribute="bottom" id="cu0-ig-tXN"/>
                             <constraint firstItem="Kx6-es-7kp" firstAttribute="leading" secondItem="sAR-3C-bs5" secondAttribute="leading" id="ejj-dH-tq5"/>
+                            <constraint firstItem="ESL-cM-PCd" firstAttribute="centerX" secondItem="sAR-3C-bs5" secondAttribute="centerX" id="gfM-TJ-jQM"/>
                             <constraint firstItem="opB-cO-b4L" firstAttribute="top" secondItem="dY9-fz-Rwo" secondAttribute="bottom" id="hbG-0G-kjb"/>
+                            <constraint firstItem="ESL-cM-PCd" firstAttribute="trailing" secondItem="sAR-3C-bs5" secondAttribute="trailingMargin" id="kxz-mx-oIe"/>
                         </constraints>
                     </view>
                     <connections>
@@ -159,6 +173,7 @@
                         <outlet property="collectionView" destination="29r-S3-vPj" id="7b1-1p-HhP"/>
                         <outlet property="flowLayout" destination="8GB-eJ-PSi" id="2py-Rz-vtn"/>
                         <outlet property="mapView" destination="Kx6-es-7kp" id="6Fe-2I-UOi"/>
+                        <outlet property="noImagesLabel" destination="ESL-cM-PCd" id="nlA-Du-EJS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yD2-nL-FPM" userLabel="First Responder" sceneMemberID="firstResponder"/>

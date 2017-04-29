@@ -26,22 +26,3 @@ A user can delete any locations by tapping on the **Edit** button in the top-rig
 ## Technical Information
 
 "Virtual Tourist" uses the Flicker API to collect the photos, Core Data to store the information about the pins and the photo albums, and User Defaults to store information about the user's map view preferences.
-
-## Updates
-
-**This build is currently in progress**
-
-COMPLETED:
-- Display initial map view and add the ability to drop and delete pins as well as retrieve the map region data information.
-- Persist the map region data information in User Defaults.
-- Persist the pin locations in Core Data.
-- Create the PhotoAlbumViewController.
-- Set up the UICollectionView.
-- Set up the Flicker API.
-- Add Flickr images to UICollectionView.
-- Allow for deletion of Flickr images, as well as a call to replace collection.
-- Persist Photo data in Core Data.
-
-TO DO:
-- Retrieve pin and map information for the mapView in PhotoAlbumViewController.
-- Make sure new pins call Flickr API while old pins load photo album from Core Data.

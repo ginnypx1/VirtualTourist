@@ -42,16 +42,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         retrieveSavedMapRegion()
         // retrieve map pins
         retrieveMapPins()
-        
     }
     
-    // MARK: - Retrieve Pins and Set Map
+    // MARK: - Retrieve Pins
     
     func retrieveMapPins() {
-        // Create a fetchrequest
-        let pinFetchRequest = NSFetchRequest<Pin>(entityName: "Pin")
+        // retrieve all pins and set map
         do {
             // fetch pins
+            let pinFetchRequest = NSFetchRequest<Pin>(entityName: "Pin")
             let allPins = try self.delegate.stack.context.fetch(pinFetchRequest)
             // add pins to map
             print("All Pins count: \(allPins.count)")
@@ -65,21 +64,29 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func addPinToDatabase(latitude: Double, longitude: Double) {
-        let newPin = Pin(latitude: latitude, longitude: longitude, context: self.delegate.stack.context)
-        print("Created new pin: \(String(describing: newPin))")
+    func retrieveSelectedPin(annotation: MKAnnotation) -> Pin? {
+        // retrieve pin selected on the map
+        let pinFetchRequest = NSFetchRequest<Pin>(entityName: "Pin")
+        let predicate = NSPredicate(format: "latitude == %@ AND longitude == %@", argumentArray: [annotation.coordinate.latitude, annotation.coordinate.longitude])
+        pinFetchRequest.predicate = predicate
+        do {
+            let selectedPin = try self.delegate.stack.context.fetch(pinFetchRequest)
+            return selectedPin[0]
+        } catch {
+            return nil
+        }
     }
-    
     
     // MARK: - Drop Pin
     
     func dropPin(gesture: UILongPressGestureRecognizer) {
+        // add a new pin to the map with a long press
         if gesture.state == .ended {
             let point = gesture.location(in: self.mapView)
             let coordinate = self.mapView.convert(point, toCoordinateFrom: self.mapView)
             
             // save new pin into database
-            self.addPinToDatabase(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            self.delegate.stack.addPinToDatabase(latitude: coordinate.latitude, longitude: coordinate.longitude)
             
             // create new map annotation
             let annotation = MKPointAnnotation()
@@ -91,36 +98,26 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Select Pin
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // grab the pin
+        // grab the annotation
         guard let annotation = view.annotation else {
             print("No annotation could be found")
             return
         }
-        
-        // extract the latitude and longitude
-        let latitude = annotation.coordinate.latitude
-        let longitude = annotation.coordinate.longitude
-        
-        // segue to PhotoAlbum, or delete pin based on editing state
-        if mapIsEditing {
-            // find the pin at this location
-            let pinFetchRequest = NSFetchRequest<Pin>(entityName: "Pin")
-            let predicate = NSPredicate(format: "latitude == %@ AND longitude == %@", argumentArray: [annotation.coordinate.latitude, annotation.coordinate.longitude])
-            pinFetchRequest.predicate = predicate
-            // delete the pin in the stack and on the map
-            do {
-                let selectedPin = try self.context.fetch(pinFetchRequest)
-                self.delegate.stack.context.delete(selectedPin[0])
-                print("Pin Deleted: \(selectedPin)")
-                self.mapView.removeAnnotation(annotation)
-            } catch {
-                print("The selected pin could not be retrieved.")
-            }
-        } else {
-            print("Will segue to photo album for pin: \(latitude), \(longitude)")
-            // TODO: Segue to photoAlbum view, already init API call
+        // find the pin at this annotation
+        guard let selectedPin = retrieveSelectedPin(annotation: annotation) else {
+            return
         }
         
+        if mapIsEditing {
+            // delete the pin in the stack and on the map
+            self.delegate.stack.context.delete(selectedPin)
+            self.mapView.removeAnnotation(annotation)
+        } else {
+            // segue to PhotoAlbumViewController
+            let photoAlbumView = self.storyboard?.instantiateViewController(withIdentifier: "PhotoAlbumViewController") as! PhotoAlbumViewController
+            photoAlbumView.pin = selectedPin
+            self.navigationController?.pushViewController(photoAlbumView, animated: true)
+        }
         // allow the user to tap on the same pin next time
         mapView.deselectAnnotation(annotation, animated: false)
     }
@@ -139,7 +136,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         UserDefaults.standard.set(regionDictionary, forKey: "region")
     }
     
-    // MARK: - Set Region
+    // MARK: - Set Map Region
     
     func retrieveSavedMapRegion() {
         var mapRegion = MapRegion()

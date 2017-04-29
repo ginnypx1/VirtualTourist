@@ -15,8 +15,6 @@ extension FlickrClient {
     
     func parseJSONDataWithCompletionHandler(_ data: Data, completionHandlerForData: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) {
         
-        print("3. Parsing JSON...")
-        
         var parsedResult: AnyObject! = nil
         do {
             parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
@@ -33,8 +31,6 @@ extension FlickrClient {
     // MARK: - Extract All Photos from JSON
     
     func extractAllPhotoURLStrings(fromJSONDictionary jsonDictionary: AnyObject) -> [String] {
-        print("4. Extracting list of all photos from JSON")
-        
         var allPhotoStrings = [String]()
         
         guard let photos = jsonDictionary[FlickrRequest.FlickrResponseKeys.Photos] as? [String: Any],

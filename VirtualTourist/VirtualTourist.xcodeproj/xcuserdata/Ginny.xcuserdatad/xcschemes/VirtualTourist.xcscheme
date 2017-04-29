@@ -38,6 +38,16 @@
                ReferencedContainer = "container:VirtualTourist.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3462BB4F1EB523DE00B2304D"
+               BuildableName = "VirtualTouristSlowTests.xctest"
+               BlueprintName = "VirtualTouristSlowTests"
+               ReferencedContainer = "container:VirtualTourist.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

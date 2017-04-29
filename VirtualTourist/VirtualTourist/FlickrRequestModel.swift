@@ -52,6 +52,8 @@ struct FlickrRequest {
         static let OKStatus = "ok"
     }
     
+    // MARK: - Build the URL
+    
     func buildURL(fromParameters parameters: [String: Any]?) -> URL {
         var components = URLComponents()
         components.scheme = FlickrURL.Scheme

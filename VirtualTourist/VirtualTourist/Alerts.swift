@@ -13,7 +13,6 @@ import UIKit
 
 class Alerts {
     
-    
     // display Internet Out alert
     static func displayInternetConnectionAlert(from viewController: UIViewController) {
         

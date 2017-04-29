@@ -8,8 +8,6 @@
 
 import CoreData
 
-// MARK: - CoreDataStack
-
 struct CoreDataStack {
     
     // MARK: Properties
@@ -71,10 +69,17 @@ struct CoreDataStack {
         try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: nil)
     }
     
+    // MARK: - Add Pin to Database
+    func addPinToDatabase(latitude: Double, longitude: Double) {
+        let newPin = Pin(latitude: latitude, longitude: longitude, context: context)
+        print("Created new pin: \(String(describing: newPin))")
+    }
+    
     // MARK: - Add FlickrPhoto to Database
     
-    func addFlickrPhotoToDatabase(urlString: String, fetchedResultsController: NSFetchedResultsController<FlickrPhoto>) {
+    func addFlickrPhotoToDatabase(urlString: String, pin: Pin, fetchedResultsController: NSFetchedResultsController<FlickrPhoto>) {
         let newFlickrPhoto = FlickrPhoto(urlString: urlString, context: fetchedResultsController.managedObjectContext)
+        newFlickrPhoto.pin = pin
         print("Created new photo: \(String(describing: newFlickrPhoto))")
     }
 }
@@ -102,7 +107,6 @@ extension CoreDataStack {
     }
     
     func autoSave(_ delayInSeconds : Int) {
-        
         if delayInSeconds > 0 {
             do {
                 try saveContext()
