@@ -1,0 +1,73 @@
+/********************************
+FONTS
+*********************************/
+h1 {
+    color: red;
+    font-size: 8rem;
+}
+/********************************
+SOCIAL MEDIA ICONS
+*********************************/
+@font-face {
+    font-family: 'icomoon';
+    src:    url('../fonts/icomoon.eot?dg84my');
+    src:    url('../fonts/icomoon.eot?dg84my#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?dg84my') format('truetype'),
+        url('../fonts/icomoon.woff?dg84my') format('woff'),
+        url('../fonts/icomoon.svg?dg84my#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-video-camera:before {
+    content: "\e914";
+}
+.icon-binoculars:before {
+    content: "\e985";
+}
+.icon-cool:before {
+    content: "\e9eb";
+}
+.icon-mail4:before {
+    content: "\ea86";
+}
+.icon-google3:before {
+    content: "\ea8a";
+}
+.icon-google-plus3:before {
+    content: "\ea8d";
+}
+.icon-facebook2:before {
+    content: "\ea91";
+}
+.icon-twitter:before {
+    content: "\ea96";
+}
+.icon-github:before {
+    content: "\eab0";
+}
+.icon-linkedin:before {
+  content: "\eac9";
+}
+.icon-pinterest:before {
+    content: "\ead1";
+}
+.icon-git:before {
+    content: "\eae7";
+}
+.social-media-icon {
+    font-size: 1.25rem;
+}
