@@ -23,6 +23,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     let delegate = UIApplication.shared.delegate as! AppDelegate
     
+    var flickrClient: FlickrClient = FlickrClient()
+    
     // MARK: - View
     
     override func viewDidLoad() {
@@ -81,7 +83,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func dropPin(gesture: UILongPressGestureRecognizer) {
         // add a new pin to the map with a long press
-        if gesture.state == .ended {
+        if gesture.state == .began {
             let point = gesture.location(in: self.mapView)
             let coordinate = self.mapView.convert(point, toCoordinateFrom: self.mapView)
             

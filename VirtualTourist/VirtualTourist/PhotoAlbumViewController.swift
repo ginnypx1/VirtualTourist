@@ -253,6 +253,13 @@ class PhotoAlbumViewController: UIViewController, UICollectionViewDataSource, UI
                 }
             }
             self.collectionView.reloadSections(IndexSet(integer: 0))
+            
+            // save the data
+            do {
+                try self.delegate.stack.saveContext()
+            } catch {
+                print("New collection changes could not be saved.")
+            }
         }
     }
     

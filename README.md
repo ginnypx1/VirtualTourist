@@ -15,6 +15,12 @@ To check out my version of "Virtual Tourist":
 3. Open "Virtual Tourist" in XCode:
 ` $ open VirtualTourist.xcodeproj `
 
+To run the project in xCode, you will need to add a Private.swift file with your API key information:
+
+```
+let YOUR_API_KEY = <YOUR_API_KEY>
+```
+
 ## Instructions
 
 The "Virtual Tourist" user will first be presented with a map. They can zoom in or move to anywhere in the world, and add a location with a long press.
@@ -26,3 +32,5 @@ A user can delete any locations by tapping on the **Edit** button in the top-rig
 ## Technical Information
 
 "Virtual Tourist" uses the Flicker API to collect the photos, Core Data to store the information about the pins and the photo albums, and User Defaults to store information about the user's map view preferences.
+
+The Flickr API can be found at: https://www.flickr.com/services/api/
