@@ -34,3 +34,7 @@ A user can delete any locations by tapping on the **Edit** button in the top-rig
 "Virtual Tourist" uses the Flicker API to collect the photos, Core Data to store the information about the pins and the photo albums, and User Defaults to store information about the user's map view preferences.
 
 The Flickr API can be found at: https://www.flickr.com/services/api/
+
+## Screenshots
+
+Screenshots and info can be found at: https://ginnypx1.github.io/VirtualTourist/
